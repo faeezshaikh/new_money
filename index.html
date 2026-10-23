@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The New Money Strategy — Interactive Book Summary</title>
+<meta name="description" content="An interactive, organized summary of The New Money Strategy by Brandon van der Kolk — key takeaways, tables, investor lessons, action steps and a mastery quiz.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23F5D211'/%3E%3Crect x='10' y='40' width='9' height='13' fill='%23111318'/%3E%3Crect x='23' y='32' width='9' height='21' fill='%23111318'/%3E%3Crect x='36' y='22' width='9' height='31' fill='%23111318'/%3E%3Cpath d='M10 36 Q 26 30 40 18 L 37 17 L 48 10 L 47 23 L 44 21 Q 30 34 12 40 Z' fill='%23111318'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --yellow:#F5D211; --yellow-dark:#d9b800; --ink:#111318; --ink-2:#1b1e26;
+    --card:#20242f; --card-2:#272c3a; --text:#e9ecf2; --muted:#9aa3b5;
+    --green:#3ecf8e; --red:#ff6b6b; --blue:#5aa9ff; --orange:#ffa94d;
+    --border:#333a4a; --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--ink); color:var(--text); line-height:1.6;
+  }
+  .wrap{max-width:1050px; margin:0 auto; padding:0 18px;}
+
+  /* ---------- Reading progress ---------- */
+  #progressBar{position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg,var(--yellow),var(--orange)); z-index:999; transition:width .1s linear;}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:radial-gradient(1200px 500px at 70% -10%, rgba(245,210,17,.18), transparent 60%),
+               linear-gradient(180deg,#171a21 0%, var(--ink) 100%);
+    border-bottom:1px solid var(--border);
+    padding:56px 0 36px; text-align:center;
+  }
+  .hero .kicker{color:var(--yellow); letter-spacing:.2em; text-transform:uppercase; font-size:.78rem; font-weight:700;}
+  .hero h1{font-size:clamp(1.9rem,5vw,3.1rem); margin:10px 0 6px; line-height:1.15;}
+  .hero h1 span{color:var(--yellow);}
+  .hero .sub{color:var(--muted); max-width:720px; margin:0 auto; font-size:1.02rem;}
+  .hero .meta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px;}
+  .pill{background:var(--card); border:1px solid var(--border); border-radius:999px;
+    padding:7px 16px; font-size:.86rem; color:var(--text);}
+  .pill b{color:var(--yellow);}
+  #viewPill{display:inline-flex; align-items:center; gap:7px;}
+  .eye{width:16px; height:16px; fill:var(--yellow);}
+
+  /* ---------- Stats strip ---------- */
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:26px 0 8px;}
+  .stat{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center;}
+  .stat .num{font-size:1.55rem; font-weight:800; color:var(--yellow);}
+  .stat .lbl{color:var(--muted); font-size:.82rem; margin-top:2px;}
+
+  /* ---------- Tab nav ---------- */
+  nav.tabs{position:sticky; top:0; z-index:50; background:rgba(17,19,24,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border); margin-top:28px;}
+  .tabbar{display:flex; gap:4px; overflow-x:auto; padding:10px 0; scrollbar-width:none;}
+  .tabbar::-webkit-scrollbar{display:none;}
+  .tabbtn{flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid transparent;
+    padding:9px 16px; border-radius:999px; cursor:pointer; font-size:.92rem; font-weight:600; white-space:nowrap;
+    transition:all .15s;}
+  .tabbtn:hover{color:var(--text); background:var(--card);}
+  .tabbtn.active{background:var(--yellow); color:#111; border-color:var(--yellow);}
+
+  main{padding:34px 0 70px;}
+  section.tab{display:none; animation:fade .25s ease;}
+  section.tab.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  h2.sec{font-size:1.7rem; margin-bottom:6px;}
+  h2.sec span{color:var(--yellow);}
+  p.lede{color:var(--muted); margin-bottom:22px; max-width:820px;}
+  h3.block{font-size:1.18rem; margin:30px 0 10px; color:var(--yellow);}
+  h4{margin:14px 0 6px;}
+
+  /* ---------- Cards / grids ---------- */
+  .grid{display:grid; gap:14px;}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px;}
+  .card h4{color:var(--yellow); margin-top:0;}
+  .card p{font-size:.92rem; color:#c9cfdd;}
+  .card .tag{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.06em;
+    background:var(--ink-2); border:1px solid var(--border); color:var(--muted);
+    border-radius:6px; padding:2px 8px; margin-bottom:8px; text-transform:uppercase;}
+
+  /* ---------- Tables ---------- */
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); margin:12px 0 20px;}
+  table{width:100%; border-collapse:collapse; font-size:.9rem; min-width:560px;}
+  thead th{background:var(--card-2); color:var(--yellow); text-align:left; padding:11px 14px;
+    font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
+  tbody td{padding:11px 14px; border-top:1px solid var(--border); color:#d4d9e4; vertical-align:top;}
+  tbody tr:nth-child(odd){background:rgba(255,255,255,.015);}
+  td b{color:var(--text);}
+  .good{color:var(--green); font-weight:700;}
+  .bad{color:var(--red); font-weight:700;}
+  .warn{color:var(--orange); font-weight:700;}
+
+  /* ---------- Accordions ---------- */
+  details.acc{background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    margin-bottom:12px; overflow:hidden;}
+  details.acc>summary{cursor:pointer; list-style:none; padding:16px 18px; font-weight:700;
+    display:flex; align-items:center; gap:12px; user-select:none;}
+  details.acc>summary::-webkit-details-marker{display:none;}
+  details.acc>summary .step-num{flex:0 0 34px; height:34px; border-radius:10px; background:var(--yellow);
+    color:#111; display:flex; align-items:center; justify-content:center; font-weight:800;}
+  details.acc>summary .chev{margin-left:auto; color:var(--muted); transition:transform .2s;}
+  details.acc[open]>summary .chev{transform:rotate(90deg);}
+  details.acc .inner{padding:0 18px 18px; border-top:1px solid var(--border); padding-top:14px;}
+  .inner ul{margin:8px 0 12px 20px;}
+  .inner li{margin-bottom:6px; font-size:.93rem; color:#cdd3e0;}
+
+  blockquote{border-left:4px solid var(--yellow); background:var(--card); border-radius:0 var(--radius) var(--radius) 0;
+    padding:14px 18px; margin:16px 0; font-style:italic; color:#d8dde8;}
+  blockquote cite{display:block; margin-top:6px; font-style:normal; font-size:.82rem; color:var(--muted);}
+
+  /* ---------- Checklist ---------- */
+  .check-item{display:flex; gap:12px; align-items:flex-start; background:var(--card);
+    border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:10px; cursor:pointer;
+    transition:border-color .15s;}
+  .check-item:hover{border-color:var(--yellow-dark);}
+  .check-item input{margin-top:4px; width:18px; height:18px; accent-color:var(--yellow); cursor:pointer;}
+  .check-item.done .ct{text-decoration:line-through; color:var(--muted);}
+  .check-item .ct b{display:block;}
+  .check-item .ct span{font-size:.86rem; color:var(--muted);}
+  #checkProgress{height:10px; background:var(--card-2); border-radius:99px; overflow:hidden; margin:8px 0 20px;
+    border:1px solid var(--border);}
+  #checkFill{height:100%; width:0%; background:linear-gradient(90deg,var(--green),var(--yellow)); transition:width .3s;}
+
+  /* ---------- Quiz ---------- */
+  .q-card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:20px; margin-bottom:16px;}
+  .q-card .q-num{font-size:.75rem; font-weight:800; color:var(--yellow); letter-spacing:.08em; text-transform:uppercase;}
+  .q-card h4{margin:6px 0 12px; font-size:1.02rem;}
+  .opt{display:block; width:100%; text-align:left; background:var(--ink-2); color:var(--text);
+    border:1px solid var(--border); border-radius:10px; padding:11px 14px; margin-bottom:8px;
+    cursor:pointer; font-size:.92rem; transition:all .15s;}
+  .opt:hover:not(:disabled){border-color:var(--yellow); transform:translateX(3px);}
+  .opt.correct{background:rgba(62,207,142,.15); border-color:var(--green); color:var(--green); font-weight:700;}
+  .opt.wrong{background:rgba(255,107,107,.12); border-color:var(--red); color:var(--red);}
+  .opt:disabled{cursor:default; opacity:.9;}
+  .expl{display:none; margin-top:10px; font-size:.86rem; color:var(--muted); background:var(--ink-2);
+    border-left:3px solid var(--yellow); padding:10px 12px; border-radius:0 8px 8px 0;}
+  .expl.show{display:block;}
+  #quizResult{display:none; text-align:center; background:var(--card); border:2px solid var(--yellow);
+    border-radius:var(--radius); padding:30px; margin-top:20px;}
+  #quizResult .score{font-size:3rem; font-weight:900; color:var(--yellow);}
+  #quizResult .title{font-size:1.3rem; font-weight:800; margin:8px 0;}
+  #quizResult p{color:var(--muted);}
+  .btn{background:var(--yellow); color:#111; border:none; border-radius:999px; padding:12px 26px;
+    font-weight:800; font-size:.95rem; cursor:pointer; transition:transform .12s;}
+  .btn:hover{transform:scale(1.04);}
+  #quizMeter{position:sticky; top:58px; z-index:40; background:var(--card); border:1px solid var(--border);
+    border-radius:999px; padding:8px 16px; font-size:.85rem; margin-bottom:18px; display:flex; justify-content:space-between;}
+  #quizMeter b{color:var(--yellow);}
+
+  footer{border-top:1px solid var(--border); padding:26px 0 40px; color:var(--muted); font-size:.82rem; text-align:center;}
+  footer a{color:var(--yellow); text-decoration:none;}
+  .note{font-size:.8rem; color:var(--muted); font-style:italic;}
+  @media (max-width:640px){ .hero{padding:40px 0 28px;} table{min-width:480px;} }
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Interactive Book Summary</div>
+    <h1>The <span>New Money</span> Strategy</h1>
+    <p class="sub">The Modern Guide to Rational, Long-Term Investing — by <b>Brandon van der Kolk</b> (founder of the New Money YouTube channel), foreword by Phil Town. Wiley, 2026.</p>
+    <div class="meta">
+      <span class="pill" id="viewPill">
+        <svg class="eye" viewBox="0 0 24 24"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg>
+        <b id="viewCount">—</b>&nbsp;views
+      </span>
+      <span class="pill">⏱️ ~15 min read</span>
+      <span class="pill">🎯 Quiz included</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">19.9%</div><div class="lbl">Buffett's avg annual return since 1965</div></div>
+      <div class="stat"><div class="num">86%</div><div class="lbl">of active funds underperform the S&P 500 over 10 yrs</div></div>
+      <div class="stat"><div class="num">~10.3%</div><div class="lbl">S&P 500 avg annual return since 1957</div></div>
+      <div class="stat"><div class="num">$2.4M</div><div class="lbl">from $100/week invested for 40 years @10%</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="wrap">
+  <div class="tabbar" id="tabbar">
+    <button class="tabbtn active" data-tab="overview">📖 Overview</button>
+    <button class="tabbtn" data-tab="steps">🪜 The 4 Steps</button>
+    <button class="tabbtn" data-tab="concepts">🏰 Key Concepts</button>
+    <button class="tabbtn" data-tab="lessons">📜 Rules &amp; Lessons</button>
+    <button class="tabbtn" data-tab="action">✅ Action Plan</button>
+    <button class="tabbtn" data-tab="quiz">🧠 Mastery Quiz</button>
+  </div>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ================= OVERVIEW ================= -->
+<section class="tab active" id="tab-overview">
+  <h2 class="sec">What this book is <span>really</span> about</h2>
+  <p class="lede">Most people in the stock market aren't investing — they're gambling. This book distills the timeless playbook of Warren Buffett, Charlie Munger, Benjamin Graham, Peter Lynch, Mohnish Pabrai, Guy Spier and Phil Town into one practical, four-step system that blends <b>passive index investing</b> (your stable core) with <b>Buffett-style stock picking</b> (your high-upside satellites).</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <span class="tag">The Problem</span>
+      <h4>A casino culture</h4>
+      <p>Zero-commission apps, meme stocks, crypto hype and media sensationalism have gamified investing. Options and crypto — not stocks — drove most of Robinhood's 2021 revenue. Meanwhile ~46% of Americans have no retirement savings at all, and inflation has outpaced wages. Learning to invest rationally is no longer optional.</p>
+    </div>
+    <div class="card">
+      <span class="tag">The Solution</span>
+      <h4>The core &amp; satellite approach</h4>
+      <p>Put 60–100% of your money in low-cost broad-market ETFs on autopilot (dollar-cost averaging), and — if you enjoy the craft — devote 20–40% to hunting rare "multibagger" businesses using Buffett's four pillars. A 100% passive split is explicitly validated too.</p>
+    </div>
+  </div>
+
+  <h3 class="block">The four shared principles of history's best investors</h3>
+  <div class="grid g2">
+    <div class="card"><h4>1. Rational investing</h4><p>Wealth is built with a rational, long-term approach — never short-term speculation. Success is ~10% brains and ~90% temperament.</p></div>
+    <div class="card"><h4>2. The power of time</h4><p>Compounding over decades, not months, did the heavy lifting for every great investor. "The stock market is designed to transfer money from the active to the patient."</p></div>
+    <div class="card"><h4>3. A balanced portfolio</h4><p>A core of safe long-term holdings, topped with carefully chosen active investments in high-quality businesses.</p></div>
+    <div class="card"><h4>4. Invest in what you understand</h4><p>Stay within your circle of competence. Deep understanding keeps your head cool when markets panic.</p></div>
+  </div>
+
+  <h3 class="block">The strategy at a glance</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Step</th><th>Name</th><th>Goal</th><th>Key tools</th></tr></thead>
+    <tbody>
+      <tr><td><b>1</b></td><td><b>Get Prepared</b></td><td>Build a financial &amp; psychological foundation so you're never forced to sell</td><td>Debt payoff, emergency fund, personal P&amp;L, long time horizon, bias awareness</td></tr>
+      <tr><td><b>2</b></td><td><b>Lay the Foundation</b></td><td>Put wealth creation on autopilot</td><td>Broad-market ETFs (e.g. S&P 500), dollar-cost averaging, automation</td></tr>
+      <tr><td><b>3</b></td><td><b>Find Buffett's Bargains</b></td><td>Hunt wonderful businesses at wonderful prices</td><td>Circle of competence, moats, management checks, DCF valuation + margin of safety</td></tr>
+      <tr><td><b>4</b></td><td><b>Stay the Course</b></td><td>Protect returns with discipline</td><td>13 buy/sell rules, quarterly check-ins, annual recommitment, downturn plan</td></tr>
+    </tbody>
+  </table></div>
+
+  <blockquote>"To invest successfully, you don't need a stratospheric IQ… What's needed is a sound intellectual framework for making decisions and the ability to keep emotions from corroding that framework."<cite>— Warren Buffett, quoted in the book</cite></blockquote>
+
+  <h3 class="block">The author's own journey (why you can trust the lessons)</h3>
+  <p style="color:#c9cfdd; font-size:.95rem;">Brandon was a physical-therapy graduate with no finance background. He chased "hot stocks" (Vita Group, Servcorp, Healthscope) and watched one collapse <b>−72.5%</b>. A call with his Uncle Peter introduced him to diversification and "a Mr. Warren Buffett." After devouring the classics (The Intelligent Investor, One Up on Wall Street, Rule&nbsp;#1…), he realized all great value investors preach the same core principles. Applying them transformed his results — and grew his "New Money" YouTube channel past 1 million subscribers. His costliest mistakes since (selling half his Tesla early on noise: ~$50K lesson; trusting a low-integrity CEO of a nanosatellite startup that went bust) shaped the rules in this book.</p>
+</section>
+
+<!-- ================= THE 4 STEPS ================= -->
+<section class="tab" id="tab-steps">
+  <h2 class="sec">The 4 Steps, <span>unpacked</span></h2>
+  <p class="lede">Click each step to expand. Every table and threshold from the book is captured below.</p>
+
+  <details class="acc" open>
+    <summary><span class="step-num">1</span> Get Prepared — finances &amp; mindset first <span class="chev">▶</span></summary>
+    <div class="inner">
+      <h4>The four preparatory steps</h4>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>#</th><th>Step</th><th>Rule of thumb</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Squash that debt</b></td><td>Pay off <b>bad debt</b> (lifestyle borrowing, usually &gt;10% interest — credit cards, payday loans, BNPL) before investing. Paying off a 24% credit card = a guaranteed 24% return. Mortgages are not "bad debt": the closer your rate is to 10%, the stronger the case to pay it down; near 0%, invest instead.</td></tr>
+          <tr><td>2</td><td><b>Cushion your fall</b></td><td>Emergency fund of <b>3–6 months of living expenses</b> (6 if income is unstable). It prevents the worst outcome: being forced to sell a good investment at a bad time.</td></tr>
+          <tr><td>3</td><td><b>Check your P&amp;L</b></td><td>Build a personal profit &amp; loss from 3 months of statements. Net income must be positive. Invest a sustainable share of your surplus (author: ~80%; a family might choose 20–30%) — never 100%.</td></tr>
+          <tr><td>4</td><td><b>Focus on the horizon</b></td><td>Commit to decades. Short term, the market is a <i>voting machine</i>; long run, a <i>weighing machine</i> (Graham). Apple fell 61% in the GFC despite great fundamentals — then $10K grew to $270K+ for those who held.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h4>The psychology: six killers of wealth</h4>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Bias</th><th>What it does</th><th>Classic trap</th></tr></thead>
+        <tbody>
+          <tr><td><b>Confirmation bias</b></td><td>You seek info that supports what you already believe</td><td>Only reading bullish takes on a stock you own</td></tr>
+          <tr><td><b>Overconfidence bias</b></td><td>Early (lucky) wins feel like skill</td><td>Leveraging up after a bull-market streak, then getting wiped out</td></tr>
+          <tr><td><b>Anchoring bias</b></td><td>Fixating on an old price</td><td>"It's a bargain — it used to be $150!" (maybe $150 was the mistake)</td></tr>
+          <tr><td><b>Herding</b></td><td>Following the crowd for comfort</td><td>GameStop/AMC 2021 — buying high, holding the bag</td></tr>
+          <tr><td><b>Sunk cost fallacy</b></td><td>Holding losers because you've "already lost too much"</td><td>Riding a broken business from −40% to −60%</td></tr>
+          <tr><td><b>Recency bias</b></td><td>Assuming recent trends continue forever</td><td>"Tech always wins" at the top; "it'll keep falling" at the bottom</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">You can't eliminate biases — the superpower is noticing them and refusing to act on them. Even pros fall victim: career pressure makes fund managers herd, which is partly why 86% underperform.</p>
+
+      <h4>Five lessons for a rational mindset</h4>
+      <ul>
+        <li><b>Understand that you are biased</b> — pause and ask "am I reacting to data, or fear?"</li>
+        <li><b>Not every investment will be a winner</b> — Buffett's success rests on ~a dozen great calls (one every ~5 years). Let winners run, admit mistakes.</li>
+        <li><b>You can never predict a downturn</b> — stop guessing, start preparing.</li>
+        <li><b>Expect multiple 30%+ drops</b> — Munger watched Berkshire halve three times and worried "zero." Volatility is the price of admission.</li>
+        <li><b>Voting machine vs weighing machine</b> — in the long run, business performance always wins over popularity.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="step-num">2</span> Lay the Foundation — passive investing core <span class="chev">▶</span></summary>
+    <div class="inner">
+      <p>Passive investors don't try to beat the market — they <b>match</b> it by buying index-tracking ETFs. The S&P 500 has returned ~10.3%/yr since 1957 <i>including</i> every crash and scandal, and it "self-cleans" by ejecting losers. Buffett's standing advice to everyday investors: a low-cost S&P 500 index fund.</p>
+
+      <h4>Common S&P 500 ETFs (from the book)</h4>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Ticker</th><th>Fund</th><th>Provider</th><th>Expense ratio</th></tr></thead>
+        <tbody>
+          <tr><td><b>VOO</b></td><td>Vanguard S&P 500 ETF</td><td>Vanguard</td><td class="good">0.03%</td></tr>
+          <tr><td><b>IVV</b></td><td>iShares Core S&P 500 ETF</td><td>BlackRock</td><td class="good">0.03%</td></tr>
+          <tr><td><b>SPY</b></td><td>SPDR S&P 500 ETF Trust</td><td>State Street</td><td>0.0945%</td></tr>
+        </tbody>
+      </table></div>
+
+      <h4>5 rules for choosing the right ETF</h4>
+      <ul>
+        <li><b>Go broad, not niche</b> — avoid thematic bets (crypto-industry, social-sentiment, sector ETFs = active bets in disguise, often 10× the fees). Tailoring to your home market is fine (the Aussie author pairs VAS + an S&P 500 fund).</li>
+        <li><b>Check the fee</b> — core holdings should have an expense ratio <b class="good">under 0.10%</b>.</li>
+        <li><b>Understand the index it tracks</b> — S&P 500 ≠ Russell 1000 Value; the index is the blueprint.</li>
+        <li><b>Look at the top 10 holdings</b> — confirm you're really diversified (small weighting mismatches vs the index are normal).</li>
+        <li><b>Avoid overlap &amp; complexity</b> — an S&P 500 + Nasdaq-100 combo mostly duplicates the same mega-caps. 1–3 broad ETFs is all you need.</li>
+      </ul>
+
+      <h4>Dollar-cost averaging (DCA)</h4>
+      <ul>
+        <li>Invest a <b>fixed amount on a fixed schedule</b>, regardless of headlines. It removes emotion, buys more shares when prices are low, fewer when high.</li>
+        <li><b>$100/week for 40 years @10% ≈ $2.41M</b> (only $208K out of pocket). Even $10/week ≈ $280K.</li>
+        <li>$5,000/yr from 1984–2024 ($205K total) → <b>$2M+</b> despite Black Monday, dot-com, 9/11, GFC, COVID.</li>
+        <li><b>Automate everything</b>: recurring bank transfer + auto-invest + fractional shares. The less you touch it, the better it works.</li>
+      </ul>
+
+      <h4>Choosing your portfolio split</h4>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Split (passive/active)</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td><b>80/20</b></td><td>Mostly hands-off, small active allocation</td></tr>
+          <tr><td><b>60/40</b></td><td>Eager to study businesses and hunt bargains (the author's split)</td></tr>
+          <tr><td><b>100/0</b></td><td>Fully passive — "officially validated." Skip Step 3, go to Step 4</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="step-num">3</span> Find Buffett's Bargains — the four pillars <span class="chev">▶</span></summary>
+    <div class="inner">
+      <p><b>Why bother?</b> Multibaggers. $1,000 at 10% for 30 yrs → $17,449. Spend 5 years learning, then compound $1,000 at 15% for 25 yrs → $32,919 (88% more). A few great calls can transform lifetime returns — Buffett credits ~12 decisions for most of Berkshire's success.</p>
+
+      <h4>Pillar 1 — Understand the business</h4>
+      <ul>
+        <li>Find candidates inside your <b>circle of competence</b> with 4 questions: Where do you spend your <b>time</b>? What do you spend <b>money</b> on? What are you <b>good at</b>? What are you <b>passionate</b> about? → spot themes → Google the public companies in those industries.</li>
+        <li>Read the <b>10-K</b>: Business Description (Part I, Item 1) and MD&amp;A (Part II, Item 7). Learn each segment's <b>revenue vs operating income</b> — they tell different stories (Disney: Entertainment has the most revenue; Experiences makes 2× the profit).</li>
+        <li>Write a <b>one-pager</b> + draw a flow chart: what it does, segments, how it makes money, most profitable parts, strengths, risks, growth levers. Can't map it? → the <b>"too hard" pile</b>.</li>
+        <li>Liking a product ≠ understanding the business.</li>
+      </ul>
+
+      <h4>Pillar 2 — Find the moat (see Key Concepts tab for all 9 moats + 3 numeric tests)</h4>
+
+      <h4>Pillar 3 — Assess management (integrity + talent)</h4>
+      <ul>
+        <li><b>Integrity — watch how they communicate</b>: shareholder letters, earnings calls, filings. Do they explain clearly, admit mistakes, discuss unprofitable segments openly (Meta quantifying Reality Labs' $17.7B loss = good), or dodge like Theranos? 5 filter questions, incl. "After listening, do I trust them more or less?"</li>
+        <li><b>Integrity — watch how they're paid</b> (proxy statement, DEF 14A): "Show me the incentive and I'll show you the outcome" (Munger). Good = pay tied to long-term performance + big personal stock ownership ("skin in the game"). Musk's 2018 package (all performance tranches) and Tim Cook's (75% performance RSUs vs S&P 500 TSR, $650M of own stock) = aligned. Tyco's Kozlowski (vague goals, unauthorized loans, $2M parties) = destroyed shareholders.</li>
+        <li><b>Talent — three checks</b>: (1) <b>ROIC trend</b> — rising = management reinvesting ever better (Google 13%→28%); flat = treading water (GM ~10%). (2) <b>Dividends &amp; buybacks</b> — reinvest when ROIC is high; return cash when it's low; only buy back shares <i>below</i> intrinsic value (Buffett's record $24.7B of Berkshire buybacks in the 2020 panic = masterclass; airlines spending 96% of free cash flow on buybacks at the top, then needing $50B bailouts = disaster). (3) <b>Debt management</b> — see thresholds in Key Concepts.</li>
+      </ul>
+
+      <h4>Pillar 4 — Valuation with a margin of safety (DCF — see Key Concepts tab for the 6 steps)</h4>
+      <ul>
+        <li>Think of every company as a <b>money-making machine</b>: what would you pay today for its future cash?</li>
+        <li><b>Apple case study (Jan 2016)</b>: FCF $70B, conservative 20% growth, terminal multiple 9.82× (5-yr avg P/FCF), 15% discount rate → intrinsic value ≈ <b>$1.92T</b>. 30% MoS ≈ $1.34T; 50% MoS ≈ $960B. Actual market cap: <b>$534B</b>. Buffett "backed up the truck" — ~$35B invested, &gt;5× return, Berkshire's best investment ever.</li>
+        <li>The estimate was still "badly wrong" (2026 market cap ≈ $2.9T vs $4.26T projected) — which is exactly <i>why</i> the margin of safety matters. Valuation is an informed estimate, not a science.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="step-num">4</span> Stay the Course — execution &amp; discipline <span class="chev">▶</span></summary>
+    <div class="inner">
+      <h4>Brokerage accounts</h4>
+      <ul>
+        <li>The platform matters far less than what you buy (the "same can of Coke" analogy). Check: <b>SEC/FINRA regulation</b> (verify at brokercheck.finra.org), <b>SIPC coverage</b> (up to $500K incl. $250K cash), extra private insurance, and the <b>custodian model</b> (your assets are held separately from the broker's funds).</li>
+        <li>"Free" brokers earn via payment for order flow, interest on idle cash, margin lending (avoid — not in the Buffett playbook), subscriptions, fund kickbacks, securities lending.</li>
+        <li><b>Avoid analysis paralysis</b> — an hour of comparison, then start. Fidelity, Schwab, Vanguard are named as trusted starting points. You can always switch.</li>
+      </ul>
+
+      <h4>Maintenance system</h4>
+      <ul>
+        <li><b>Get the setup right</b>: "Well sown is half grown." Know your numbers, write your plan, automate, block an hour to run one company through the four pillars.</li>
+        <li><b>Quarterly check-ins</b> (aligned with earnings season): passive = confirm nothing changed; active = read the earnings report, listen to the call, reassess moat/management/valuation. Don't mentally check out after a big paper gain.</li>
+        <li><b>Prepare for turmoil</b>: ~10% drops happen multiple times a year; 20%+ roughly every five. Set rules <i>before</i> panic (e.g. "I will never sell core ETFs"; "if an active pick drops 30%, I review the thesis before acting"). Filter out headlines.</li>
+        <li><b>Recommit annually</b>: review goals, contributions, time horizon, progress — and remember <i>why</i> you're doing this.</li>
+        <li><b>Stay disciplined</b>: 7 well-chosen $10K investments compounding at 15% ≈ <b>$2.63M</b> over a 40-yr career — and even if every second one went to zero, you'd still have ~$1.7M. Time in the market beats timing the market.</li>
+        <li><b>Start today</b> — the biggest risk at the end of the book is inaction.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ================= KEY CONCEPTS ================= -->
+<section class="tab" id="tab-concepts">
+  <h2 class="sec">Key concepts &amp; <span>cheat sheets</span></h2>
+  <p class="lede">The reference tables you'll come back to: the 9 moats, the 3 moat stress tests, the financial-health thresholds, and the 6-step DCF valuation.</p>
+
+  <h3 class="block">🏰 The 9 types of economic moats</h3>
+  <div class="grid g3">
+    <div class="card"><h4>1. Brand</h4><p>Reputation lets you charge premium prices with no loss of sales. <b>Examples:</b> Apple ("Apple tax"), Ferrari (~50% gross margin), Nike, Coca-Cola.</p></div>
+    <div class="card"><h4>2. Switching</h4><p>Leaving is costly, risky or painful. <b>Examples:</b> Microsoft Office in businesses; Apple's ecosystem ("a velvet rope").</p></div>
+    <div class="card"><h4>3. Network effects</h4><p>More users = more value. <b>Examples:</b> WhatsApp/Messenger (everyone's already there), Visa's cardholder↔merchant flywheel.</p></div>
+    <div class="card"><h4>4. "Secret sauce"</h4><p>Intangible assets: patents, licenses, IP, exclusive content. <b>Examples:</b> Pfizer patents, Disney's Marvel/Star Wars, Moody's SEC-blessed ratings oligopoly.</p></div>
+    <div class="card"><h4>5. Toll</h4><p>Control a critical access point and charge everyone. <b>Examples:</b> railroads, pipelines, airports; digitally — Visa/Mastercard, Google ads, Apple's 30% App Store cut.</p></div>
+    <div class="card"><h4>6. Cost advantage</h4><p>Produce cheaper without losing quality: scale buying, supply chains, vertical integration, tech efficiency. <b>Examples:</b> Costco, Walmart, Amazon logistics.</p></div>
+    <div class="card"><h4>7. Scale advantage</h4><p>Size itself is the edge: lower unit costs, supplier leverage, reach, trust, data. <b>Examples:</b> Walmart, Amazon fulfillment.</p></div>
+    <div class="card"><h4>8. Barrier to entry</h4><p>The hill is too steep to climb at all — massive capital requirements. <b>Examples:</b> cruise lines ($2B per ship; top 3 take ~75% of revenue), BNSF's 32,500 miles of track.</p></div>
+    <div class="card"><h4>9. Monopoly</h4><p>"You beat capitalism." <b>Example:</b> Google (~90% of search). ⚠️ Warning: monopolies attract regulators (DOJ v. Google, FTC v. Meta &amp; Microsoft).</p></div>
+  </div>
+  <p class="note" style="margin-top:10px;">The best companies stack multiple moats (Apple: brand + switching + toll + secret sauce; Amazon: scale + network + switching + toll). The more moats, the safer the profits.</p>
+
+  <h3 class="block">🧪 The 3 moat stress tests (do the numbers confirm the story?)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Test</th><th>Metric</th><th>What to look for</th><th>Book example</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Standout Test</b></td><td>Gross margin vs industry peers</td><td>Clearly rises above the pack → pricing power / cost edge</td><td>Ferrari ~50% vs automakers' 8–29%</td></tr>
+      <tr><td><b>2. Two Engine Test</b></td><td>Revenue growth <i>and</i> operating margin over 10 yrs</td><td>Revenue growing ~<b>10%+/yr</b> while operating margin holds or improves — rare and powerful</td><td>Microsoft: revenue $93.6B→$261.8B (10.8% CAGR), op. margin 30.1%→45.0%</td></tr>
+      <tr><td><b>3. Capital Efficiency Test</b></td><td>ROIC = NOPAT ÷ (Equity + Total Debt), over 10 yrs</td><td><span class="good">≥15% excellent (moat likely)</span> · <span class="warn">10–15% solid</span> · <span class="bad">&lt;10% weak</span> — and check the <i>trend</i></td><td>Google 13%→28% (widening); AT&T ~5.8%; GM flat ~10%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Passing all three isn't mandatory (capital-heavy BNSF won't ace ROIC yet has a huge barrier-to-entry moat) — but a company that does is seriously fortified.</p>
+
+  <h3 class="block">📏 Financial health cheat sheet</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Metric</th><th>Formula</th><th>Thresholds</th></tr></thead>
+    <tbody>
+      <tr><td><b>Gross margin</b></td><td>(Revenue − COGS) ÷ Revenue</td><td>Compare within the same industry; standout = moat clue</td></tr>
+      <tr><td><b>Operating margin</b></td><td>Operating income ÷ Revenue</td><td>Should hold steady or improve as revenue grows</td></tr>
+      <tr><td><b>ROIC</b></td><td>NOPAT ÷ (Equity + Total Debt); NOPAT = Op. income × (1 − tax rate)</td><td><span class="good">≥15%</span> / <span class="warn">10–15%</span> / <span class="bad">&lt;10%</span></td></tr>
+      <tr><td><b>Debt-to-equity</b></td><td>Total debt ÷ Shareholders' equity</td><td><span class="good">&lt;0.5 resilient</span> · <span class="warn">&lt;1 conservative</span> · <span class="bad">&gt;2 red flag</span> (Alphabet 0.08, Nvidia 0.12 vs GM 2.02, Royal Caribbean 2.47)</td></tr>
+      <tr><td><b>Current ratio</b></td><td>Current assets ÷ Current liabilities</td><td><span class="good">&gt;1.5 author's rule</span> · 1–1.5 okay with context · <span class="bad">&lt;1 warning</span> (Royal Caribbean hit 0.18 pre-COVID → massive dilution)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="block">🧮 The 6-step DCF valuation (the lemonade-stand method)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Step</th><th>What you do</th><th>Key detail</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Project future cash flows</b></td><td>Start with current free cash flow (operating cash − capex) and grow it 10 years</td><td>Pick a growth rate from 10-yr/5-yr/1-yr CAGR of net income &amp; FCF — then apply the "sniff test" and be conservative (Apple: history said 30–40%, book used 20%). Equity can be distorted by buybacks.</td></tr>
+      <tr><td><b>2. Estimate terminal value</b></td><td>Year-10 FCF × exit multiple</td><td>Use the company's ~5-yr average price-to-free-cash-flow (Apple: 9.82×)</td></tr>
+      <tr><td><b>3. Discount to today</b></td><td>PV = FV ÷ (1 + r)ⁿ for each year + terminal value</td><td>Book's discount rate = <b>15%</b> = your minimum acceptable annual return</td></tr>
+      <tr><td><b>4. Add discounted cash flows</b></td><td>Sum years 1–10 + discounted terminal value</td><td>= rough intrinsic value of operations</td></tr>
+      <tr><td><b>5. Adjust for cash &amp; debt</b></td><td><b>+ cash</b> and equivalents, <b>− total debt</b></td><td>Like a house with $100K buried in the yard vs a $200K mortgage attached</td></tr>
+      <tr><td><b>6. Margin of safety</b></td><td>Buy only at a discount to intrinsic value</td><td><b>Minimum 30%; gold standard 50%.</b> Protects you when you're wrong, supercharges returns when you're right</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="block">👔 CEO compensation decoder (proxy statement / DEF 14A)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Component</th><th>What to want</th></tr></thead>
+    <tbody>
+      <tr><td>Base salary</td><td>Modest relative to total pay (Cook: $3M, unchanged since 2016)</td></tr>
+      <tr><td>Cash bonus</td><td>Tied to hard-to-manipulate metrics (revenue, operating income)</td></tr>
+      <tr><td>RSUs / PSUs</td><td>Majority performance-based over multi-year horizons (Cook: 75% PSUs vs 3-yr S&P 500 TSR)</td></tr>
+      <tr><td>Stock ownership</td><td><b>Skin in the game</b> — the strongest alignment signal (Musk ~20.5% of Tesla; Cook $650M+)</td></tr>
+      <tr><td>Red flags</td><td>Vague goals, short-term EPS bonuses (invites buyback games), lavish perks, unauthorized loans (Tyco)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= LESSONS & RULES ================= -->
+<section class="tab" id="tab-lessons">
+  <h2 class="sec">The 13 Rules &amp; lessons to <span>remember</span></h2>
+  <p class="lede">The book's complete rulebook for buying and selling, plus the quotes worth pinning to your wall.</p>
+
+  <h3 class="block">Passive investing rules (the core)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td><b>1</b></td><td>Only invest an amount you can <b>regularly commit to</b>.</td></tr>
+      <tr><td><b>2</b></td><td>Buy on a <b>consistent schedule, no matter what</b> — through highs and lows.</td></tr>
+      <tr><td><b>3</b></td><td>Treat passive investing as a <b>lifelong commitment</b> — don't sell until retirement (barring true hardship). Never try to time the market.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="block">Active investing — buying rules (the satellites)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>Rule</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><b>4</b></td><td>Only invest in a business you can <b>understand</b></td><td>Use the "too hard" pile liberally — missing winners beats owning mysteries</td></tr>
+      <tr><td><b>5</b></td><td>No investment without a <b>competitive advantage</b></td><td>Capitalism is relentless; no moat = vulnerable profits</td></tr>
+      <tr><td><b>6</b></td><td>No investment if management <b>lacks integrity or skill</b></td><td>Bad leadership destroys value faster than almost anything</td></tr>
+      <tr><td><b>7</b></td><td>Never buy without a <b>30%+ margin of safety</b> (prefer more)</td><td>Valuation is imprecise; the buffer is your protection and your upside</td></tr>
+      <tr><td><b>8</b></td><td>When you find it, <b>load up the truck</b></td><td>Buffett &amp; Munger's biggest regrets are errors of <i>omission</i> — "sucking my thumb" on fat pitches</td></tr>
+      <tr><td><b>9</b></td><td>Don't expect a company to <b>tick every box</b></td><td>Perfect businesses don't exist (or are priced for perfection). The 4 pillars are non-negotiable; the rest is judgment</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="block">Active investing — selling rules</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>Rule</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><b>10</b></td><td>If a business <b>turns rotten, sell it</b></td><td>When you're in a hole, stop digging. Facts changed → act</td></tr>
+      <tr><td><b>11</b></td><td>If the business <b>changes</b>, it's okay to leave</td><td>"The stock doesn't know you own it." Past loyalty is not a thesis</td></tr>
+      <tr><td><b>12</b></td><td>If price runs <b>well beyond fair value</b>, locking in profit is fine</td><td>A realized profit is still a profit — that's discipline, not impatience</td></tr>
+      <tr><td><b>13</b></td><td>If a <b>great business stays great, holding is fine too</b></td><td>"Don't cut the flowers and water the weeds" (Lynch). Buffett held Apple far past fair value; the author's held Tesla ran $32→$407</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="block">💎 Lessons every investor should internalize</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Temperament beats IQ</h4><p>"Investing is not a game where the guy with the 160 IQ beats the guy with the 130 IQ." Success ≈ 10% brains, 90% temperament. The real battle happens inside your own mind.</p></div>
+    <div class="card"><h4>Don't lose money</h4><p>Buffett's Rule 1 — and Rule 2 is "never forget Rule 1." The biggest risk isn't picking a wrong stock; it's being forced to sell a good one at the wrong time. Preparation (Step 1) exists to prevent that.</p></div>
+    <div class="card"><h4>Great investing is lethargy</h4><p>Buffett: success came from ~a dozen decisions in 60 years. The punch-card mindset: if you had only 20 investment slots for life, you'd choose very carefully and swing only at fat pitches.</p></div>
+    <div class="card"><h4>Crashes are opportunities</h4><p>History rewards those who stay rational: Buffett bought Goldman, GE and BofA in 2008 and repurchased record Berkshire stock in the 2020 panic. "What gives you opportunities is other people doing dumb things."</p></div>
+    <div class="card"><h4>Noise is the enemy</h4><p>Buffett stayed in Omaha, not Wall Street: "In Omaha, you can just sit and think." Headlines are engineered for clicks. Filter them out; review quarterly instead.</p></div>
+    <div class="card"><h4>Simplicity wins</h4><p>"There seems to be some perverse human characteristic that likes to make easy things difficult." One broad ETF can be an entire foundation. Munger: "The reason our ideas haven't spread faster is because they're too simple."</p></div>
+  </div>
+
+  <blockquote>"In the short term the stock market is a voting machine, but in the long run it is a weighing machine."<cite>— Benjamin Graham</cite></blockquote>
+  <blockquote>"You can argue that if you're not willing to react with equanimity to a market price decline of 50%, two or three times a century… you deserve the mediocre result you're going to get."<cite>— Charlie Munger</cite></blockquote>
+  <blockquote>"Someone is sitting in the shade today because someone planted a tree a long time ago."<cite>— Warren Buffett</cite></blockquote>
+</section>
+
+<!-- ================= ACTION PLAN ================= -->
+<section class="tab" id="tab-action">
+  <h2 class="sec">Your <span>action plan</span></h2>
+  <p class="lede">The book's recommendations distilled into a do-this-week checklist. Your progress is saved in this browser. "Well sown is half grown."</p>
+  <div id="checkProgress"><div id="checkFill"></div></div>
+  <div id="checklist">
+    <label class="check-item"><input type="checkbox" data-k="c1"><span class="ct"><b>1. Run your personal P&amp;L</b><span>List 3 months of income and expenses. Confirm net income is positive and decide your sustainable investing amount (a % of surplus — never 100%).</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c2"><span class="ct"><b>2. Kill high-interest debt first</b><span>Any lifestyle debt above ~10% interest (credit cards, BNPL, payday loans) gets paid off before a single dollar is invested — it's a guaranteed return.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c3"><span class="ct"><b>3. Build your emergency fund</b><span>3–6 months of living expenses (6 if your income is unstable). Then lock it away — it protects your investments from forced selling.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c4"><span class="ct"><b>4. Commit to a time horizon in writing</b><span>Decades, not months. If you need the money within ~10 years, stocks may not be the right vehicle.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c5"><span class="ct"><b>5. Open a regulated brokerage account</b><span>Check SEC/FINRA registration (brokercheck.finra.org), SIPC coverage and custodian model. One hour of research max — don't let analysis paralysis delay you.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c6"><span class="ct"><b>6. Choose 1–3 broad, low-cost ETFs</b><span>Expense ratio under 0.10%, broad market-weighted index, check top-10 holdings, avoid overlap.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c7"><span class="ct"><b>7. Automate your dollar-cost averaging</b><span>Recurring bank transfer + auto-invest + fractional shares. Remove willpower from the equation.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c8"><span class="ct"><b>8. Decide your core/satellite split</b><span>80/20, 60/40 or 100/0 passive/active — whichever you'll actually stick with.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c9"><span class="ct"><b>9. Map your circle of competence</b><span>Answer the 4 questions (time / money / skills / passions), list industries, and shortlist companies you'd enjoy researching.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c10"><span class="ct"><b>10. Run one company through the 4 pillars</b><span>Read its 10-K, write a one-pager + flow chart, test the moat (3 tests), vet the CEO (communication + pay), and do a 6-step DCF with a 30–50% margin of safety.</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c11"><span class="ct"><b>11. Write your crash rules now</b><span>Before the next downturn: e.g. "I never sell core ETFs" and "a 30% drop in an active pick triggers a thesis review, not a panic sale."</span></span></label>
+    <label class="check-item"><input type="checkbox" data-k="c12"><span class="ct"><b>12. Schedule quarterly check-ins + an annual review</b><span>Quarterly: earnings reports and calls for active picks; a quick alignment check for passive. Annually: recommit to goals, horizon and contributions.</span></span></label>
+  </div>
+  <p class="note">Disclaimer: this summary is for education only and is not financial advice. The book itself reminds readers to consult a specialist where appropriate.</p>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="tab" id="tab-quiz">
+  <h2 class="sec">Mastery <span>quiz</span></h2>
+  <p class="lede">15 questions. Answer honestly — explanations appear after each pick. Score 13+ to earn Buffett-level mastery. 🏆</p>
+  <div id="quizMeter"><span>Answered: <b id="qDone">0</b>/15</span><span>Correct: <b id="qCorrect">0</b></span></div>
+  <div id="quizBox"></div>
+  <div style="text-align:center; margin-top:10px;"><button class="btn" id="finishBtn" style="display:none;">Show my result</button></div>
+  <div id="quizResult">
+    <div class="score" id="rScore"></div>
+    <div class="title" id="rTitle"></div>
+    <p id="rMsg"></p>
+    <button class="btn" onclick="resetQuiz()" style="margin-top:14px;">Retake quiz</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Interactive summary of <b>The New Money Strategy</b> by Brandon van der Kolk (Wiley, 2026) · Foreword by Phil Town.</p>
+    <p style="margin-top:6px;">Educational summary for personal study — not financial advice. All credit for the ideas to the author. Buy the book for the full experience.</p>
+  </div>
+</footer>
+
+<script>
+/* ============ Views counter (works on GitHub Pages) ============ */
+(function(){
+  var el = document.getElementById('viewCount');
+  var NS = 'faeez-new-money-strategy-summary', KEY = 'views';
+  function localFallback(){
+    try{
+      var n = parseInt(localStorage.getItem('nms_views')||'0',10)+1;
+      localStorage.setItem('nms_views', n);
+      el.textContent = n.toLocaleString() + ' (local)';
+    }catch(e){ el.textContent = '—'; }
+  }
+  try{
+    fetch('https://abacus.jasoncameron.dev/hit/'+NS+'/'+KEY)
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(d){ el.textContent = Number(d.value).toLocaleString(); })
+      .catch(localFallback);
+  }catch(e){ localFallback(); }
+})();
+
+/* ============ Reading progress bar ============ */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+/* ============ Tabs ============ */
+document.querySelectorAll('.tabbtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tabbtn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('section.tab').forEach(function(s){ s.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+/* ============ Checklist with localStorage ============ */
+(function(){
+  var boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+  function refresh(){
+    var done = 0;
+    boxes.forEach(function(b){
+      b.closest('.check-item').classList.toggle('done', b.checked);
+      if(b.checked) done++;
+    });
+    document.getElementById('checkFill').style.width = (done/boxes.length*100)+'%';
+  }
+  boxes.forEach(function(b){
+    try{ b.checked = localStorage.getItem('nms_'+b.dataset.k)==='1'; }catch(e){}
+    b.addEventListener('change', function(){
+      try{ localStorage.setItem('nms_'+b.dataset.k, b.checked?'1':'0'); }catch(e){}
+      refresh();
+    });
+  });
+  refresh();
+})();
+
+/* ============ Quiz ============ */
+var QUIZ = [
+  {q:"What are the four steps of The New Money Strategy, in order?",
+   opts:["Buy low, sell high, diversify, repeat","Get Prepared → Lay the Foundation → Find Buffett's Bargains → Stay the Course","Research → Invest → Monitor → Exit","Save → Trade → Hedge → Retire"], a:1,
+   e:"Step 1 builds your financial & mental base, Step 2 is the passive ETF core, Step 3 is Buffett-style stock picking, Step 4 is discipline and maintenance."},
+  {q:"According to the book, successful investing is roughly…",
+   opts:["90% brains, 10% temperament","50/50 skill and luck","10% brains, 90% temperament","All about insider information"], a:2,
+   e:"Temperament — controlling fear, greed, doubt and impatience — matters far more than raw intelligence. Even high-IQ pros fall into the same traps."},
+  {q:"Over a 10-year period, what share of actively managed large-cap funds underperform the S&P 500?",
+   opts:["About 14%","About 50%","About 86%","About 99%"], a:2,
+   e:"Per the SPIVA scorecard cited in the book: ~86% underperform — a key argument for a passive core."},
+  {q:"Which debt should be eliminated BEFORE you start investing?",
+   opts:["Your mortgage, always","High-interest 'bad debt' like credit cards (often >10–20% interest)","All debt of any kind","Student loans only"], a:1,
+   e:"Paying off a 24% credit card is a guaranteed 24% return — better odds than the market. Mortgages are a judgment call based on your rate; low-rate 'good debt' can stay."},
+  {q:"How large should your emergency fund be?",
+   opts:["One month of expenses","3–6 months of living expenses","Two years of salary","You don't need one if you own ETFs"], a:1,
+   e:"3–6 months (closer to 6 if income is unstable). It exists so life's curveballs never force you to sell investments at the worst time."},
+  {q:"You refuse to sell a deteriorating stock because 'I've already lost too much.' Which bias is this?",
+   opts:["Recency bias","Anchoring bias","Herding behavior","Sunk cost fallacy"], a:3,
+   e:"Sunk cost fallacy: past losses shouldn't drive future decisions. If fundamentals have broken, the best move is often to cut losses and move on."},
+  {q:"What expense ratio does the book recommend for your core long-term ETF?",
+   opts:["Under 0.10%","Under 1%","Under 2%","Fees don't matter for ETFs"], a:0,
+   e:"Core holdings should charge under 0.10% — VOO and IVV charge just 0.03%. Thematic ETFs often charge 10×+ more for what is really an active bet."},
+  {q:"What does dollar-cost averaging naturally cause you to do?",
+   opts:["Time the market tops and bottoms","Buy more shares when prices are low and fewer when they're high","Buy only during bull markets","Trade more frequently"], a:1,
+   e:"A fixed amount on a fixed schedule automatically buys more shares when prices drop — lowering your average cost without any forecasting."},
+  {q:"A company consistently earning what ROIC is likely to have a moat?",
+   opts:["5% or higher","10% or higher","15% or higher","50% or higher"], a:2,
+   e:"The book's ranges: ≥15% excellent (moat likely), 10–15% solid, <10% weak. Also check the 10-year trend — rising ROIC (like Google's 13%→28%) is the best sign."},
+  {q:"Ferrari keeps ~50% gross margin while most automakers keep 8–29%. This is textbook evidence of which moat?",
+   opts:["A brand moat","A toll moat","A network effects moat","A cost advantage moat"], a:0,
+   e:"Ferrari's pricing power comes from exclusivity and status — customers happily pay a huge premium. That's the Standout Test confirming a brand moat."},
+  {q:"The 'Two Engine Test' checks which two metrics over ~10 years?",
+   opts:["Dividends and buybacks","Revenue growth and operating margin","Share price and volume","Cash and debt"], a:1,
+   e:"Both engines must fire: revenue growing ~10%+/yr while operating margin holds or improves. Doing both at once is rare and signals a widening moat (e.g. Microsoft)."},
+  {q:"What discount rate does the book use in its DCF valuations — and why?",
+   opts:["5% — the bond yield","10% — the market average","15% — your minimum acceptable annual return","25% — to be extra safe"], a:2,
+   e:"15% is the target: meaningfully above the market's ~10% (otherwise just buy the index), but not fantasy-land. Every future cash flow is discounted at this rate."},
+  {q:"What is the MINIMUM margin of safety the book demands before buying a stock?",
+   opts:["10%","30% (with 50% as the gold standard)","There's no need if the company is great","75%"], a:1,
+   e:"Rule 7: never buy without at least a 30% discount to intrinsic value — 50% preferred. It protects you when your forecast is wrong (and it will be — even the Apple case study's projection missed by $1.3T)."},
+  {q:"When should you sell your PASSIVE index investments?",
+   opts:["Whenever the market looks overheated","After any 20% gain","Basically never — hold until retirement, barring severe hardship","Every December for tax reasons"], a:2,
+   e:"Rule 3: passive investing is a lifelong commitment. No timing the market — set it, automate it, and let compounding work for decades."},
+  {q:"What is Warren Buffett's famous Rule No. 1 of investing?",
+   opts:["Buy what you know","Don't lose money","Be greedy when others are fearful","Diversify everything"], a:1,
+   e:"Rule 1: Don't lose money. Rule 2: Never forget Rule 1. The entire book — preparation, moats, margin of safety — is engineered around protecting the downside first."}
+];
+
+var answered = 0, correct = 0;
+function buildQuiz(){
+  var box = document.getElementById('quizBox');
+  box.innerHTML = '';
+  answered = 0; correct = 0;
+  updateMeter();
+  QUIZ.forEach(function(item, qi){
+    var card = document.createElement('div');
+    card.className = 'q-card';
+    var num = document.createElement('div'); num.className='q-num'; num.textContent = 'Question ' + (qi+1) + ' of ' + QUIZ.length;
+    var h = document.createElement('h4'); h.textContent = item.q;
+    card.appendChild(num); card.appendChild(h);
+    item.opts.forEach(function(opt, oi){
+      var b = document.createElement('button');
+      b.className = 'opt'; b.textContent = opt;
+      b.addEventListener('click', function(){ answer(card, item, oi, b); });
+      card.appendChild(b);
+    });
+    var ex = document.createElement('div'); ex.className = 'expl'; ex.textContent = item.e;
+    card.appendChild(ex);
+    box.appendChild(card);
+  });
+  document.getElementById('finishBtn').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'none';
+}
+function answer(card, item, oi, btn){
+  if(card.dataset.done) return;
+  card.dataset.done = '1';
+  var opts = card.querySelectorAll('.opt');
+  opts.forEach(function(o, i){
+    o.disabled = true;
+    if(i === item.a) o.classList.add('correct');
+  });
+  if(oi === item.a){ correct++; } else { btn.classList.add('wrong'); }
+  card.querySelector('.expl').classList.add('show');
+  answered++;
+  updateMeter();
+  if(answered === QUIZ.length){
+    document.getElementById('finishBtn').style.display = 'inline-block';
+  }
+}
+function updateMeter(){
+  document.getElementById('qDone').textContent = answered;
+  document.getElementById('qCorrect').textContent = correct;
+}
+document.getElementById('finishBtn').addEventListener('click', function(){
+  var r = document.getElementById('quizResult');
+  document.getElementById('rScore').textContent = correct + '/' + QUIZ.length;
+  var t, m;
+  if(correct >= 13){ t = '🏆 Buffett-Level Mastery'; m = 'Outstanding. The concepts have truly stuck — temperament, moats, margin of safety and all. Now follow the book\'s final advice: start today.'; }
+  else if(correct >= 10){ t = '📈 Rational Investor'; m = 'Strong grasp of the strategy. Revisit the Key Concepts tab (moat tests and the DCF steps) to close the last gaps.'; }
+  else if(correct >= 7){ t = '🌱 Getting There'; m = 'Good foundation. Re-read the 4 Steps tab — especially the psychology section and the 13 rules — then try again.'; }
+  else { t = '📖 Time for a Re-read'; m = 'No shame — even pros fall for these traps. Walk through each tab in order, then come back and retake the quiz.'; }
+  document.getElementById('rTitle').textContent = t;
+  document.getElementById('rMsg').textContent = m;
+  r.style.display = 'block';
+  r.scrollIntoView({behavior:'smooth'});
+});
+function resetQuiz(){ buildQuiz(); window.scrollTo({top:0, behavior:'smooth'}); }
+buildQuiz();
+</script>
+</body>
+</html>
